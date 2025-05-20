@@ -55,10 +55,6 @@ require("lazy").setup({
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
       vim.opt.foldenable = false
-      -- bindings
-      vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
-      vim.keymap.set("n", "<leader>o", "zR", { desc = "Open all folds" })
-      vim.keymap.set("n", "<leader>c", "zM", { desc = "Close all folds" })
     end,
   },
 
@@ -91,6 +87,9 @@ require("lazy").setup({
   },
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip" },
+
+  -- Fugitive for git
+  { "tpope/vim-fugitive" },
 
   -- Github Copilot
   { "github/copilot.vim" },
@@ -148,3 +147,7 @@ vim.keymap.set("n", "N", "Nzz", {desc = "keep cursor centered when searching"})
 vim.keymap.set({"n", "v"}, "<leader>y", "\"+y", {desc = "yank to system clipboard"})
 vim.keymap.set("n", "<leader>Y", "\"+Y", {desc = "yank to system clipboard"})
 vim.keymap.set("n", "Q", "@q", {desc = "Replay macro in register q"})
+vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
+vim.keymap.set("n", "<leader>o", "zR", { desc = "Open all folds" })
+vim.keymap.set("n", "<leader>c", "zM", { desc = "Close all folds" })
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Open git status" })

@@ -91,6 +91,15 @@ require("lazy").setup({
   -- Fugitive for git
   { "tpope/vim-fugitive" },
 
+  -- Harpoon
+  { "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("plugins.harpoon_setup")
+    end,
+  },
+
   -- Github Copilot
   { "github/copilot.vim" },
 

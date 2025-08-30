@@ -15,19 +15,16 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugin setup
 require("lazy").setup({
   { "neovim/nvim-lspconfig" },
-  { "mason-org/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end
-  },
-  { "mason-org/mason-lspconfig.nvim",
+  { "mason-org/mason.nvim", config = true },
+  {
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
       "mason-org/mason.nvim",
     },
     config = function()
       require("lsp")
-    end
+    end,
   },
 
   -- TreeSitter
@@ -60,7 +57,8 @@ require("lazy").setup({
 
   -- Telescope
   {
-    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -73,14 +71,15 @@ require("lazy").setup({
   -- nvim-jdtls (Java LSP plugin)
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java" },  -- Only load for Java files
+    ft = { "java" }, -- Only load for Java files
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
   },
 
   -- Autocompletion
-  { "hrsh7th/nvim-cmp",
+  {
+    "hrsh7th/nvim-cmp",
     config = function()
       require("plugins.cmp_setup")
     end,
@@ -92,7 +91,8 @@ require("lazy").setup({
   { "tpope/vim-fugitive" },
 
   -- Harpoon
-  { "ThePrimeagen/harpoon",
+  {
+    "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -104,7 +104,7 @@ require("lazy").setup({
   { "github/copilot.vim" },
 
   -- Colorscheme
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",   name = "catppuccin", priority = 1000 },
 })
 
 local opt = vim.opt
@@ -147,15 +147,15 @@ vim.cmd([[filetype plugin indent on]])
 vim.cmd.colorscheme("catppuccin")
 
 -- Remappings
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {desc = "move highlighted lines down, reindent"})
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {desc = "move highlighted lines up, reindent"})
-vim.keymap.set("n", "<C-d>", "<C-d>zz", {desc = "keep cursor centered after moving"})
-vim.keymap.set("n", "<C-u>", "<C-u>zz", {desc = "keep cursor centered after moving"})
-vim.keymap.set("n", "n", "nzz", {desc = "keep cursor centered when searching"})
-vim.keymap.set("n", "N", "Nzz", {desc = "keep cursor centered when searching"})
-vim.keymap.set({"n", "v"}, "<leader>y", "\"+y", {desc = "yank to system clipboard"})
-vim.keymap.set("n", "<leader>Y", "\"+Y", {desc = "yank to system clipboard"})
-vim.keymap.set("n", "Q", "@q", {desc = "Replay macro in register q"})
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move highlighted lines down, reindent" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move highlighted lines up, reindent" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "keep cursor centered after moving" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "keep cursor centered after moving" })
+vim.keymap.set("n", "n", "nzz", { desc = "keep cursor centered when searching" })
+vim.keymap.set("n", "N", "Nzz", { desc = "keep cursor centered when searching" })
+vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y", { desc = "yank to system clipboard" })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "yank to system clipboard" })
+vim.keymap.set("n", "Q", "@q", { desc = "Replay macro in register q" })
 vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "<leader>o", "zR", { desc = "Open all folds" })
 vim.keymap.set("n", "<leader>c", "zM", { desc = "Close all folds" })

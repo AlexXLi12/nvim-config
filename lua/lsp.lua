@@ -1,7 +1,7 @@
 -- Set up Mason (LSP installer)
 require("mason").setup()
 
--- Configure mason-lspconfig to ensure LSPs are installed
+-- Ensure install list (this does NOT auto-setup servers)
 require("mason-lspconfig").setup({
   ensure_installed = {
     "clangd",       -- C, C++
@@ -14,12 +14,23 @@ require("mason-lspconfig").setup({
   },
 })
 
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "off", -- "off", "basic", "strict"
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
 
--- Keybindings that activate when LSP attaches
+-- Keybindings when LSP attaches
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local opts = { buffer = ev.buf }
-
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
@@ -27,11 +38,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>fo", function() vim.lsp.buf.format({ async = true }) end, opts)
+    vim.keymap.set("n", "<leader>rf", function() vim.lsp.buf.format({ async = true }) end, opts)
   end,
 })
 
--- Enable diagnostic visuals
+-- Diagnostics UI
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
@@ -39,4 +50,3 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
-

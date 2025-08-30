@@ -8,17 +8,17 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 
 local telescope = require('telescope')
 
-telescope.load_extension('fzf')
 telescope.setup({
   defaults = {
     file_ignore_patterns = {
-      "go",                -- Go modules
-      "node_modules/",              -- Node
-      "%.lock",                     -- Lock files
-      "__pycache__/", "env/",       -- Python
-      "%.class$",                   -- Java class files
-      "%.o$", "%.out$",             -- C/C++ build artifacts
+      "^go/pkg", "^go/bin",   -- Go modules
+      "node_modules/",        -- Node
+      "%.lock",               -- Lock files
+      "__pycache__/", "env/", -- Python
+      "%.class$",             -- Java class files
+      "%.o$", "%.out$",       -- C/C++ build artifacts
     },
   },
 })
 
+telescope.load_extension('fzf')

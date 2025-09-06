@@ -12,6 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Plugin setup
 require("lazy").setup({
   { "neovim/nvim-lspconfig" },
@@ -90,6 +93,36 @@ require("lazy").setup({
   -- Fugitive for git
   { "tpope/vim-fugitive" },
 
+  -- nvim-tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("plugins.nvimtree_setup")
+    end,
+  },
+  { "nvim-tree/nvim-web-devicons" },
+
+  -- auto-session
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { "~/Projects", "~/Downloads", "/" },
+      git_use_branch_name = true,
+      git_auto_restore_on_branch_change = true,
+      -- log_level = 'debug',
+    },
+  },
+
   -- Harpoon
   {
     "ThePrimeagen/harpoon",
@@ -129,6 +162,7 @@ opt.splitbelow = true
 opt.splitright = true
 opt.mouse = ""
 opt.updatetime = 100
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- nvim copy goes to terminal emulator clipboard
 vim.g.clipboard = 'osc52'

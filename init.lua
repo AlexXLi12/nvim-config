@@ -162,6 +162,8 @@ opt.splitbelow = true
 opt.splitright = true
 opt.mouse = ""
 opt.updatetime = 100
+opt.ttimeout = true
+opt.ttimeoutlen = 10
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- nvim copy goes to terminal emulator clipboard
@@ -194,3 +196,14 @@ vim.keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "<leader>o", "zR", { desc = "Open all folds" })
 vim.keymap.set("n", "<leader>c", "zM", { desc = "Close all folds" })
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Open git status" })
+-- Alt key mappings
+vim.keymap.set("n", "<M-h>", "<C-w>h", { noremap = true })
+vim.keymap.set("n", "<M-j>", "<C-w>j", { noremap = true })
+vim.keymap.set("n", "<M-k>", "<C-w>k", { noremap = true })
+vim.keymap.set("n", "<M-l>", "<C-w>l", { noremap = true })
+vim.keymap.set("n", "<M-s>", ":split<CR>", { noremap = true })       -- horizontal
+vim.keymap.set("n", "<M-v>", ":vsplit<CR>", { noremap = true })      -- vertical
+vim.keymap.set("n", "<M-q>", ":q<CR>", { noremap = true, silent = true }) -- close window
+vim.keymap.set("n", "<M-w>", ":w<CR>", { noremap = true, silent = true })   -- write file_name
+
+

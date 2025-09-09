@@ -122,6 +122,13 @@ require("lazy").setup({
       -- log_level = 'debug',
     },
   },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
 
   -- Harpoon
   {
@@ -137,7 +144,7 @@ require("lazy").setup({
   { "github/copilot.vim" },
 
   -- Colorscheme
-  { "catppuccin/nvim",   name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",            name = "catppuccin", priority = 1000 },
 })
 
 local opt = vim.opt
@@ -201,9 +208,7 @@ vim.keymap.set("n", "<M-h>", "<C-w>h", { noremap = true })
 vim.keymap.set("n", "<M-j>", "<C-w>j", { noremap = true })
 vim.keymap.set("n", "<M-k>", "<C-w>k", { noremap = true })
 vim.keymap.set("n", "<M-l>", "<C-w>l", { noremap = true })
-vim.keymap.set("n", "<M-s>", ":split<CR>", { noremap = true })       -- horizontal
-vim.keymap.set("n", "<M-v>", ":vsplit<CR>", { noremap = true })      -- vertical
+vim.keymap.set("n", "<M-s>", ":split<CR>", { noremap = true })            -- horizontal
+vim.keymap.set("n", "<M-v>", ":vsplit<CR>", { noremap = true })           -- vertical
 vim.keymap.set("n", "<M-q>", ":q<CR>", { noremap = true, silent = true }) -- close window
-vim.keymap.set("n", "<M-w>", ":w<CR>", { noremap = true, silent = true })   -- write file_name
-
-
+vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true }) -- write file_name
